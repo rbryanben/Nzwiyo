@@ -19,7 +19,7 @@ import com.example.nziyo.R;
 import java.io.File;
 import java.util.ArrayList;
 
-public class homeMusicGridAdapter extends ArrayAdapter<String> implements homeInterface{
+public class homeMusicGridAdapter extends ArrayAdapter<String> {
 
     public homeMusicGridAdapter(@NonNull Context context, ArrayList<String> paths) {
         super(context, R.layout.item_track, paths);
@@ -76,6 +76,5 @@ public class homeMusicGridAdapter extends ArrayAdapter<String> implements homeIn
         return customview ;
     }
 
-    @Override
 
 }

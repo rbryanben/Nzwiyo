@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,6 +32,7 @@ public class activityHome extends AppCompatActivity {
     TextView playingTrackName ;
 
     ImageView trackIcon;
+    TextView noTrackFoundText;
 
     //Global Variables
     private static final String TAG = "activityHome";
@@ -55,9 +57,10 @@ public class activityHome extends AppCompatActivity {
         playingTrackName = findViewById(R.id.trackNameAndArtist);
 
         trackIcon = findViewById(R.id.trackIcon);
+        noTrackFoundText = findViewById(R.id.noTrackFoundText);
 
         //translate bottom navigation
-        playerLayout.setTranslationY(200);
+        playerLayout.setTranslationY(400);
 
         //get all music in phone
         checkPermissions();
@@ -79,12 +82,13 @@ public class activityHome extends AppCompatActivity {
     private void getMusic() {
         //get paths
         MUSIC_PATHS = ((shared) getApplication()).getMusicPaths();
-        
-        for (String l : MUSIC_PATHS){
-            Log.d(TAG, "getMusic: "+l);
+
+        //If array is empty show that no tracks have been found
+        if (!MUSIC_PATHS.isEmpty()){
+            noTrackFoundText.setVisibility(View.GONE);
         }
 
-        //set adapter
+        //set tracks grid adapter
         homeMusicGridAdapter adapter = new homeMusicGridAdapter(this,MUSIC_PATHS);
         tracksGrid.setAdapter(adapter);
 
@@ -102,35 +106,34 @@ public class activityHome extends AppCompatActivity {
 
                 };
 
-                //set as playing
-                Log.d(TAG, "onItemClick: "+Integer.toString(position));
-
-                //remove all previous item clicks
-                for (int i= 0 ; i != tracksGrid.getChildCount() ; i++){
-                    View viewItem = tracksGrid.getChildAt(i);
-                        RelativeLayout layout = viewItem.findViewById(R.id.trackBackground);
-                        layout.setBackgroundResource(R.color.colorPrimary);
-                }
-
-                //set new check
+                //show track selected animation
                 int firstPosition = tracksGrid.getFirstVisiblePosition();
                 int childPosition = position - firstPosition;
 
                 View viewItem = tracksGrid.getChildAt(childPosition);
                 if (viewItem != null){
-                    RelativeLayout layout = viewItem.findViewById(R.id.trackBackground);
+                    //change background color for track
+                    final RelativeLayout layout = viewItem.findViewById(R.id.trackBackground);
                     layout.setBackgroundResource(R.color.colorPrimaryDark);
+
+                    //restore background color
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            layout.setBackgroundResource(R.color.colorPrimary);
+                        }
+                    },1000);
                 }
 
-                //set items
-
+                //set items for the current playing track
                 TextView trackNameChild = viewItem.findViewById(R.id.trackNameAndArtistz);
                 ImageView trackImageChild = viewItem.findViewById(R.id.trackImage);
 
                 //set player items
-                playingTrackName.setText(trackNameChild.getText().toString());
+                playingTrackName.setText(trackNameChild.getText().toString()); //track name
 
-                BitmapDrawable drawable = (BitmapDrawable) trackImageChild.getDrawable();
+                BitmapDrawable drawable = (BitmapDrawable) trackImageChild.getDrawable(); //track image
                 Bitmap image = drawable.getBitmap();
                 trackIcon.setImageBitmap(image);
 
@@ -140,7 +143,6 @@ public class activityHome extends AppCompatActivity {
                     playerLayout.animate().translationY(0).setDuration(500);
                 }
 
-                //set player items
 
             }
         });

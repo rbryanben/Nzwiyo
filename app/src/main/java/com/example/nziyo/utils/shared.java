@@ -31,27 +31,36 @@ public class shared extends Application {
             }
         }
 
-        //get all sub directories
-            for (String sub_folder : ROOT_FOLDERS){
+        try {
+            //get all sub directories
+            for (String sub_folder : ROOT_FOLDERS) {
                 //get subfolder
                 File subFolder = new File(sub_folder);
-                for (File folder : subFolder.listFiles()){
-                    if (!SUB_FOLDERS.contains(folder.getAbsolutePath()) && folder.isDirectory()){
+                for (File folder : subFolder.listFiles()) {
+                    if (!SUB_FOLDERS.contains(folder.getAbsolutePath()) && folder.isDirectory()) {
                         SUB_FOLDERS.add(folder.getAbsolutePath());
                     }
                 }
             }
+        }
+        catch (Exception ex){
+            Log.d(TAG, "getMusicPaths: "+ex.toString());
+        }
 
             //Merge folder
             SUB_FOLDERS.addAll(ROOT_FOLDERS);
-
-        for (String path : SUB_FOLDERS){
-            File file = new File(path);
-            for (File subFiles : file.listFiles()){
-                if (subFiles.getName().endsWith(".mp3")){
-                    MUSIC_PATHS.add(subFiles.getAbsolutePath());
+        try {
+            for (String path : SUB_FOLDERS) {
+                File file = new File(path);
+                for (File subFiles : file.listFiles()) {
+                    if (subFiles.getName().endsWith(".mp3")) {
+                        MUSIC_PATHS.add(subFiles.getAbsolutePath());
+                    }
                 }
             }
+        }
+        catch (Exception ex){
+            Log.d(TAG, "getMusicPaths: "+ex);
         }
 
         return MUSIC_PATHS ;
