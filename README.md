@@ -1,5 +1,7 @@
 # nzwiyo
 simple android music player
 
-# Images preview
-![](sample images/sample0)
+# app preview
+<img src="images/sample1.jpg" width=300 />
+
+<img src="images/sample0.jpg" width=300 />
