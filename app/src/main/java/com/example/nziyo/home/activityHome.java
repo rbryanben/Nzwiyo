@@ -122,6 +122,7 @@ public class activityHome extends AppCompatActivity {
                         @Override
                         public void run() {
                             layout.setBackgroundResource(R.color.colorPrimary);
+                            layout.setBackgroundResource(R.color.colorPrimary);
                         }
                     },1000);
                 }
