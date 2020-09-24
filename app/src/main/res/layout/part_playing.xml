@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+   <RelativeLayout
+       android:layout_height="wrap_content"
+       android:layout_width="match_parent"
+       android:background="@color/colorPrimaryDark">
+
+       <!--music icon -->
+       <ImageView
+           android:id="@+id/trackIcon"
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:src="@drawable/music"
+           android:layout_marginLeft="10dp"
+           android:layout_centerVertical="true"/>
+
+       <!-- name -->
+       <TextView
+           android:id="@+id/trackNameAndArtist"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerVertical="true"
+           android:layout_marginStart="20dp"
+           android:layout_marginLeft="20dp"
+           android:maxLines="2"
+           android:layout_marginEnd="34dp"
+           android:layout_toLeftOf="@id/buttons"
+           android:layout_toRightOf="@id/trackIcon"
+           android:text="Payphone Remix\n Maroon 5 -V"
+           android:textColor="@color/white"
+           android:textStyle="bold" />
+
+       <!-- audio manipulation -->
+       <LinearLayout
+           android:id="@+id/buttons"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:layout_centerVertical="true"
+           android:layout_alignParentRight="true"
+           android:layout_marginRight="40dp">
+
+           <!-- previous button -->
+           <ImageView
+               android:id="@+id/previousButton"
+               android:layout_width="35dp"
+               android:layout_height="35dp"
+               android:src="@drawable/ic_next"
+               android:rotation="180"/>
+
+           <!-- play button -->
+           <ImageView
+               android:id="@+id/playButton"
+               android:layout_width="35dp"
+               android:layout_height="35dp"
+               android:src="@drawable/ic_play"
+               android:layout_marginLeft="20dp"/>
+
+
+           <!-- next button -->
+           <ImageView
+               android:id="@+id/nextButton"
+               android:layout_width="35dp"
+               android:layout_height="35dp"
+               android:src="@drawable/ic_next"
+               android:layout_marginLeft="20dp"/>
+
+
+       </LinearLayout>
+
+       <!-- song progress -->
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="3dp"
+           android:layout_below="@id/trackIcon"
+           android:layout_marginTop="40dp"
+           android:layout_marginLeft="10dp"
+           android:layout_marginRight="20dp"
+           android:background="@color/colorAccent"
+           android:layout_marginBottom="10dp">
+
+           <!--progress -->
+           <RelativeLayout
+               android:id="@+id/trackProgress"
+               android:layout_width="100dp"
+               android:layout_height="match_parent"
+               android:background="@color/white"/>
+       </RelativeLayout>
+
+   </RelativeLayout>
+</merge>

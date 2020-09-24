@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/trackBackground"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <!-- track image -->
+    <ImageView
+        android:id="@+id/trackImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/music"
+        android:scaleType="centerCrop"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp" />
+
+    <!-- Artist Name and Song-->
+    <TextView
+        android:id="@+id/trackNameAndArtistz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Low\nJuicy J ft Nicki Minaj Lil Bibby"
+        android:layout_toRightOf="@id/trackImage"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp" />
+
+    <!-- separator -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/trackImage"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
+</RelativeLayout>
